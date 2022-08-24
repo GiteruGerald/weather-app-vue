@@ -16,10 +16,7 @@ export default {
   components: {
     CityInput
 },
-    mounted(){
-      console.log("mounted")
   
-    },
   setup(){
 
     return {}
