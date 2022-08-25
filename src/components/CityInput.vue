@@ -26,8 +26,37 @@
                 <div class="card-body">
                     <p class="card-text">Latitude:{{ latitude }}</p>
                     <p class="card-text"> Longiude: {{ longitude }}</p>
+                    <p class="card-text" v-if="tempData"> Data: {{ tempData}}</p>
                 </div>
                 </div>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">Here are the Results</div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Time</th>
+                            <th scope="col">Temperature</th>
+                            <th scope="col">Wind Speed</th>
+                            <th scope="col">Cloud Cover</th>
+                            <th scope="col">Humidity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-active" v-for="tempData in tempData">
+                                <th scope="row">Active</th>
+                                <td>{{ tempData }}</td>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
+                            
+                        </tbody>
+                </table>
+                </div>
+        </div>
     </div>
 </template>
 
@@ -40,11 +69,10 @@ import { ref } from '@vue/reactivity';
         setup(){
             let latitude = ref('')
             let longitude = ref('')
+            let tempData = ref('')
             let getWeather = async () => {
-                // axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-                const response = await axios.get('http://localhost:8080/v1/forecast',
-                // ?latitude=${latitude.value}&longitude=${longitude.value}`
-                {
+                
+                const response = await axios.get('http://localhost:8080/v1/forecast',{
                     params:{
                         latitude : latitude.value,
                         longitude : longitude.value,
@@ -58,13 +86,14 @@ import { ref } from '@vue/reactivity';
                 }
                 ).then( (response)=>{
                     //handles success
-                    console.log(response.data);
+                    tempData.value = response.data.hourly.temperature_2m.slice(6, 19);
+                    console.log(tempData);
                 }).catch((err)=>{
                     console.log(err);
                 })  
             }
 
-            return{ latitude, longitude, getWeather}
+            return{ latitude, longitude, getWeather, tempData}
         }
     }
     
