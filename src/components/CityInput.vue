@@ -21,40 +21,74 @@
                     
                     </div>
         </form>    
-        <div class="card border-secondary mb-3" style="max-width: 20rem;">
-                <div class="card-header">Input values</div>
-                <div class="card-body">
-                    <p class="card-text">Latitude:{{ latitude }}</p>
-                    <p class="card-text"> Longiude: {{ longitude }}</p>
-                    <p class="card-text" v-if="tempData"> Data: {{ tempData}}</p>
-                </div>
-                </div>
+        
     </div>
     <div class="row">
-        <div class="card">
-            <div class="card-header">Here are the Results</div>
-                <div class="card-body">
+        <div class="card" v-if="getWeather !== null ">
+            <div class="card-header">Weather Forecast</div>
+                <div class="card-body table-data">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                             <th scope="col">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-active" v-for="timeData in timeData">
+                                <td>{{ timeData }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
                             <th scope="col">Temperature</th>
-                            <th scope="col">Wind Speed</th>
-                            <th scope="col">Cloud Cover</th>
-                            <th scope="col">Humidity</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-active" v-for="tempData in tempData">
-                                <th scope="row">Active</th>
                                 <td>{{ tempData }}</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Wind Speed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-active" v-for="relativeData in relativeData">
+                                <td>{{ relativeData }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Relative Humidity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-active" v-for="windData in windData">
+                                <td>{{ windData }}</td>
                             </tr>
                             
                         </tbody>
-                </table>
+                    </table>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Cloud Cover</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-active" v-for="cloudData in cloudData">
+                                <td>{{ cloudData }}</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
                 </div>
         </div>
     </div>
@@ -69,7 +103,13 @@ import { ref } from '@vue/reactivity';
         setup(){
             let latitude = ref('')
             let longitude = ref('')
+            let timeData = ref('')
             let tempData = ref('')
+            let relativeData = ref('') 
+            let cloudData = ref('') 
+            let windData = ref('') 
+
+
             let getWeather = async () => {
                 
                 const response = await axios.get('http://localhost:8080/v1/forecast',{
@@ -86,19 +126,25 @@ import { ref } from '@vue/reactivity';
                 }
                 ).then( (response)=>{
                     //handles success
+                    timeData.value = response.data.hourly.time.slice(6, 19);
                     tempData.value = response.data.hourly.temperature_2m.slice(6, 19);
-                    console.log(tempData);
+                    relativeData.value = response.data.hourly.relativehumidity_2m.slice(6, 19);
+                    cloudData.value = response.data.hourly.cloudcover_mid.slice(6, 19);
+                    windData.value = response.data.hourly.windspeed_120m.slice(6, 19);
+                    console.log(response.data);
                 }).catch((err)=>{
                     console.log(err);
                 })  
             }
 
-            return{ latitude, longitude, getWeather, tempData}
+            return{ latitude, longitude, getWeather, timeData, tempData,relativeData, cloudData, windData}
         }
     }
     
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.table-data{
+    display: flex;
+}
 </style>
