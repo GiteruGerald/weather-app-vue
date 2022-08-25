@@ -1,5 +1,6 @@
 <template>
     <div class="row">
+        <!-- Todo:  Use Geocoding API to fetch by City Also -->
         <form @submit.prevent="getWeather">
             <div class="row g-3 align-items-center">
                     <div class="col-auto align-items-center row">
