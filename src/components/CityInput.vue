@@ -1,5 +1,6 @@
 <template>
     <div class="row">
+        <!-- Implement background image -->
         <!-- Todo:  Use Geocoding API to fetch by City Also -->
         <form @submit.prevent="getWeather">
             <div class="row g-3 align-items-center">
@@ -28,7 +29,7 @@
         <div class="card" v-if="getWeather !== null ">
             <div class="card-header">Weather Forecast</div>
                 <div class="card-body table-data">
-                    <table class="table table-hover">
+                    <table class="table table-dark">
                         <thead>
                             <tr>
                             <th scope="col">Time</th>
@@ -40,7 +41,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-hover">
+                    <table class="table table-success">
                         <thead>
                             <tr>
                             <th scope="col">Temperature</th>
@@ -52,10 +53,10 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-hover">
+                    <table class="table table-info">
                         <thead>
                             <tr>
-                            <th scope="col">Wind Speed</th>
+                            <th scope="row">Wind Speed</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,7 +65,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-hover">
+                    <table class="table table-warning">
                         <thead>
                             <tr>
                             <th scope="col">Relative Humidity</th>
@@ -77,7 +78,7 @@
                             
                         </tbody>
                     </table>
-                    <table class="table table-hover">
+                    <table class="table table-danger">
                         <thead>
                             <tr>
                             <th scope="col">Cloud Cover</th>
