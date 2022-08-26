@@ -2,7 +2,7 @@
   <div class="home">
     <div class="container">
       <h1>Weather ForeCast</h1>
-
+      
       <CityInput/>
     </div>
   </div>
@@ -14,7 +14,7 @@ import CityInput from "../components/CityInput.vue";
 export default {
   name: 'HomeView',
   components: {
-    CityInput
+    CityInput,
 },
   
   setup(){

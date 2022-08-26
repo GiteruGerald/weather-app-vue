@@ -5,12 +5,18 @@ export const useWeatherStore = defineStore({
     id:'weather',
     state:() =>{{
         return{
-            weatherData:{}
+            weatherData:{
+                time:'',
+                humidity:'',
+                temp:'',
+                cloud:'',
+                wind:'',
+            }
         }
     }},
     actions:{
         async fetchweatherData(lat, long){
-                const response = await axios.get('http://localhost:8080/v1/forecast',{
+                const response = await axios.get('https://api.open-meteo.com/v1/forecast',{
                     params:{
                         latitude : lat,
                         longitude : long,
@@ -24,13 +30,12 @@ export const useWeatherStore = defineStore({
                 }
                 ).then( (response)=>{
                     //handles success
-                    // timeData.value = response.data.hourly.time.slice(6, 19);
-                    // tempData.value = response.data.hourly.temperature_2m.slice(6, 19);
-                    // relativeData.value = response.data.hourly.relativehumidity_2m.slice(6, 19);
-                    // cloudData.value = response.data.hourly.cloudcover_mid.slice(6, 19);
-                    // windData.value = response.data.hourly.windspeed_120m.slice(6, 19);
-                    
-                    console.log(response.data);
+                    this.weatherData.time = response.data.hourly.time.slice(6, 19);
+                    this.weatherData.temp  = response.data.hourly.temperature_2m.slice(6, 19);
+                    this.weatherData.humidity = response.data.hourly.relativehumidity_2m.slice(6, 19);
+                    this.weatherData.cloud = response.data.hourly.cloudcover_mid.slice(6, 19);
+                    this.weatherData.wind = response.data.hourly.windspeed_120m.slice(6, 19);
+                   
                 }).catch((err)=>{
                     console.log(err);
                 })  
