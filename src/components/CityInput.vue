@@ -99,45 +99,51 @@
 <script>
 import axios from 'axios';
 import { ref } from '@vue/reactivity';
+import {useWeatherStore} from '../stores/weather-service';
 
     export default {
        
         setup(){
             let latitude = ref('')
             let longitude = ref('')
+
+            const weather = useWeatherStore()
             let timeData = ref('')
             let tempData = ref('')
             let relativeData = ref('') 
             let cloudData = ref('') 
             let windData = ref('') 
 
+            function getWeather(){
+                weather.fetchweatherData(latitude.value, longitude.value)
+             }
 
-            let getWeather = async () => {
+            // let getWeather = async () => {
                 
-                const response = await axios.get('http://localhost:8080/v1/forecast',{
-                    params:{
-                        latitude : latitude.value,
-                        longitude : longitude.value,
-                        hourly: [
-                                'temperature_2m',
-                                'relativehumidity_2m',
-                                'cloudcover_mid',
-                                'windspeed_120m'
-                                ]
-                    }
-                }
-                ).then( (response)=>{
-                    //handles success
-                    timeData.value = response.data.hourly.time.slice(6, 19);
-                    tempData.value = response.data.hourly.temperature_2m.slice(6, 19);
-                    relativeData.value = response.data.hourly.relativehumidity_2m.slice(6, 19);
-                    cloudData.value = response.data.hourly.cloudcover_mid.slice(6, 19);
-                    windData.value = response.data.hourly.windspeed_120m.slice(6, 19);
-                    console.log(response.data);
-                }).catch((err)=>{
-                    console.log(err);
-                })  
-            }
+            //     const response = await axios.get('http://localhost:8080/v1/forecast',{
+            //         params:{
+            //             latitude : latitude.value,
+            //             longitude : longitude.value,
+            //             hourly: [
+            //                     'temperature_2m',
+            //                     'relativehumidity_2m',
+            //                     'cloudcover_mid',
+            //                     'windspeed_120m'
+            //                     ]
+            //         }
+            //     }
+            //     ).then( (response)=>{
+            //         //handles success
+            //         timeData.value = response.data.hourly.time.slice(6, 19);
+            //         tempData.value = response.data.hourly.temperature_2m.slice(6, 19);
+            //         relativeData.value = response.data.hourly.relativehumidity_2m.slice(6, 19);
+            //         cloudData.value = response.data.hourly.cloudcover_mid.slice(6, 19);
+            //         windData.value = response.data.hourly.windspeed_120m.slice(6, 19);
+            //         console.log(response.data);
+            //     }).catch((err)=>{
+            //         console.log(err);
+            //     })  
+            // }
 
             return{ latitude, longitude, getWeather, timeData, tempData,relativeData, cloudData, windData}
         }
