@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="lds-dual-ring"></div>
-
     </div>
 </template>
 

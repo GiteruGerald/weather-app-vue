@@ -11,7 +11,8 @@ export const useWeatherStore = defineStore({
                 temp:'',
                 cloud:'',
                 wind:'',
-            }
+            },
+            isLoading:false
         }
     }},
     actions:{
@@ -29,6 +30,7 @@ export const useWeatherStore = defineStore({
                     }
                 }
                 ).then( (response)=>{
+                    this.isLoading = true
                     //handles success
                     this.weatherData.time = response.data.hourly.time.slice(6, 19);
                     this.weatherData.temp  = response.data.hourly.temperature_2m.slice(6, 19);
@@ -36,6 +38,8 @@ export const useWeatherStore = defineStore({
                     this.weatherData.cloud = response.data.hourly.cloudcover_mid.slice(6, 19);
                     this.weatherData.wind = response.data.hourly.windspeed_120m.slice(6, 19);
                    
+                    this.isLoading = false
+                    console.log(this.isLoading);
                 }).catch((err)=>{
                     console.log(err);
                 })  

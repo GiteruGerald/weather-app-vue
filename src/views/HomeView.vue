@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <div class="container">
-      <h1>Weather ForeCast</h1>
-      
+      <h1>Weather ForeCast</h1>      
       <CityInput/>
     </div>
   </div>
@@ -16,10 +15,6 @@ export default {
   components: {
     CityInput,
 },
-  
-  setup(){
 
-    return {}
-  },
 }
 </script>

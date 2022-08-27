@@ -1,13 +1,13 @@
 <template>
 <!-- <Suspense> -->
-    <!-- <template #default> -->
-            <div class="card" v-if="store != null">
+
+    <div class="card">
                 <div class="card-header">Weather Forecast</div>
-                    <div class="card-body table-data">
+                    <div class="card-body table-data" >
                         <table class="table table-dark">
                             <thead>
                                 <tr>
-                                <th scope="col">Time</th>
+                                <th scope="col">Time (iso8601)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -19,7 +19,7 @@
                         <table class="table table-success">
                             <thead>
                                 <tr>
-                                <th scope="col">Temperature</th>
+                                <th scope="col">Temperature (°C)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,7 +31,7 @@
                         <table class="table table-info">
                             <thead>
                                 <tr>
-                                <th scope="row">Wind Speed</th>
+                                <th scope="row">Wind Speed (km/h)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,7 +43,7 @@
                         <table class="table table-warning">
                             <thead>
                                 <tr>
-                                <th scope="col">Relative Humidity</th>
+                                <th scope="col">Relative Humidity (%)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,7 +56,7 @@
                         <table class="table table-danger">
                             <thead>
                                 <tr>
-                                <th scope="col">Cloud Cover</th>
+                                <th scope="col">Cloud Cover (%)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,13 +67,7 @@
                             </tbody>
                         </table>
                     </div>
-            </div>
-    <!-- </template> -->
-    <!-- <template #fallback> -->
-        <Spinner v-if="store == null"/>
-        <!-- </template> -->
-<!-- </Suspense> -->
-    
+        </div>
 
 </template>
 
