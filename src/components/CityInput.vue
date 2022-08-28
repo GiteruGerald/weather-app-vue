@@ -27,7 +27,7 @@
         </form>    
     </div>
     <div class="row">
-        <h2 class="pull-left">OR select CITY</h2>
+        <!-- <h2>OR select CITY</h2> -->
         <!-- Todo:  Use Geocoding API to fetch by City Also -->
           
     </div>

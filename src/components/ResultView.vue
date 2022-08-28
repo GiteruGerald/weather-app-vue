@@ -2,7 +2,7 @@
 <!-- <Suspense> -->
 
     <div class="card">
-                <div class="card-header">Weather Forecast</div>
+                <div class="card-header">Weather Forecast ( 0600hrs to 1800hrs)</div>
                     <div class="card-body table-data" >
                         <table class="table table-dark">
                             <thead>

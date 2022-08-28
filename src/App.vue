@@ -1,7 +1,7 @@
 <template>
-  <nav>
+  <!-- <nav>
     <router-link to="/">Home</router-link>
-  </nav>
+  </nav> -->
   <router-view/>
 </template>
 
@@ -12,6 +12,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-image: url('../src/assets/sunny_bg.jpg');
 }
 
 nav {
