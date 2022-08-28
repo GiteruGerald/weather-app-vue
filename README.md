@@ -19,7 +19,7 @@ the hourly temp, wind, cloud cover, and relative humidity levels.
 
 #2. Installation and setup
 
-1. First clone this repository to your local machine using `https://github.com/GiteruGerald/weather-app-vue.git`
+1. First clone this repository to your local machine
 
 2. cd into the **weather-app-vue** folder and run `npm install`.
 
@@ -28,4 +28,8 @@ the hourly temp, wind, cloud cover, and relative humidity levels.
 #4. Usage
 The following screencast shows how to run the app. Check it out:
 
+
+
+
+https://user-images.githubusercontent.com/28384422/187089798-c65262f7-54c0-4bf9-8d03-48ab080c7856.mp4
 
