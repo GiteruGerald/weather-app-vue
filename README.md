@@ -11,7 +11,7 @@ The end user simply adds the latitude and longitude for a given place and get th
 
 ### Tool used
 
-Vue, Pinia State Management
+Vue, Pinia State Management, Bootswatch Sketchy theme
 ## Which API?
 
 This application uses the [Weather Forecast API](https://open-meteo.com/en) to fetch
