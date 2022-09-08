@@ -17,7 +17,7 @@ export const useWeatherStore = defineStore({
     }},
     actions:{
         async fetchweatherData(lat, long){
-                const response = await axios.get('https://api.open-meteo.com/v1/forecast',{
+                await axios.get('https://api.open-meteo.com/v1/forecast',{
                     params:{
                         latitude : lat,
                         longitude : long,
